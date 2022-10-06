@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="origin-trial" content="this code is genereted from the link below">
+    <!--https://developer.chrome.com/blog/enabling-shared-array-buffer/#origin-trial-->
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    <meta name="Access-Control-Allow-Origin" value="*" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <title>Обрезать видео прямо в браузере без использования сервера</title>
+    <!--<script> if (!crossOriginIsolated) SharedArrayBuffer = ArrayBuffer; </script>-->
+    <!-- https://codepen.io/JackT2/pen/PKvVoK -->
+    <link href="/styles.css?vers=15" rel="stylesheet">
+</head>
+
+<body>
+    <div class="all start">
+        <div class="sidebar">
+            <div>
+                <h3>Безопасно.</h3>
+                <p>Видео обрезается прямо на вашем компьютере в браузере (не уходит на сервер).</p>
+            </div>
+            <div>
+                <h3>Мгновенно.</h3>
+                <p>Видео обрезается и сохраняется "на лету", не увеличивая размера</p>
+            </div>
+            <div>
+                <h3>Очень просто.</h3>
+                <p>Выберите видео, укажите где отрезать, сохраните</p>
+            </div>
+
+        </div>
+        <div class="background img">
+            <h3 class="title">Обрезка видео</h3>
+
+
+            <div id="input-video-area" class="hide">
+                <div class="custom-video-area" id="custom-popout-video">
+                    <div class="video-controls control">
+                        <div class="top-wrapper">
+
+                            <div class="progress-bar">
+                                <span class="buffer-bar"></span>
+                                <span class="time-bar"></span>
+                            </div>
+                            <div class="progress-bar-left">
+                                <span class="time-bar-left"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="column">
+                                <div class="bottom-wrapper">
+                                    <div class="play-button mini" title="Play/Pause Video">
+
+                                    </div>
+                                    <div class="time">
+                                        <span class="current">00:00</span> / <span class="duration">00:00</span><span
+                                            class="custom_time">...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <video id="input-video" class="video-element" preload="auto" playsinline></video>
+                </div>
+                <button id="trim">Обрезать!</button>
+            </div>
+
+
+            <video id="output-video" preload="auto" controls autoplay playsinline></video>
+
+            <div id="inputs">
+                <div class="link-title-box">
+                    <p class="boxlabel">Загрузите видео с компьютера</p>
+                    <div class="block"><input type="file" id="uploader" /></div>
+                </div>
+                <center style="font-size: 20px;font-weight: bold;">или</center>
+                <form class="link-title-box">
+                    <p class="boxlabel">Укажите ссылку на видео</p>
+                    <div class="block">
+                        <input type="text" id="weblink" placeholder="https://site.com/video.mp4" value=""
+                            autocomplete="off" />
+                        <button type="submit" id="uploadlink">Закачать и обрезать!</button>
+                    </div>
+                </form>
+            </div>
+            <div>
+                <h3 id="message"></h3>
+
+                <a id="download"></a>
+            </div>
+            <p> <span id="oldDuration"></span><br><span id="newDuration"></span></p>
+            <p id="cleaning"></p>
+        </div>
+    </div>
+
+    <div class="modal quality_choose hide">
+        <div>
+            <h4 style="text-align:center">Выберите качество:</h4>
+            <div class="selectQuality">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="time_choose modal hide">
+        <div>
+            <h4 style="text-align:center">Начало и конец (минут:секунд)</h4>
+            <form class="setTime">
+                <input type="text" id="custom_start" placeholder="Начало 0:00" />
+                <input type="text" id="custom_end" placeholder="Конец 0:00" />
+                <button id="apply_custom_time" type="submit">Применить</button>
+                <button id="cancel_modal">Отменить</button>
+            </form>
+        </div>
+    </div>
+    <div class="notice">
+        P.S. Не работает на iOS &lt; 15 версии
+    </div>
+    <script src='https://unpkg.com/@ffmpeg/ffmpeg@0.11.0/dist/ffmpeg.min.js'></script>
+    <script src="/script.js?vers=44"></script>
+
+</body>
+
+</html>
